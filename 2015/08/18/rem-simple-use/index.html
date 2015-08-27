@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://mackxu.github.io/2015/08/18/rem-simple-use/index.html">
 <meta property="og:site_name" content="mackxu的博客">
 <meta property="og:description" content="在项目中重度使用rem">
-<meta property="og:updated_time" content="2015-08-19T02:24:14.000Z">
+<meta property="og:updated_time" content="2015-08-20T02:31:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="rem 在项目中的简单使用">
 <meta name="twitter:description" content="在项目中重度使用rem">
@@ -96,17 +96,17 @@
 </code></pre><p>如果用在移动设备，上面的样式需要在页面head中设置：</p>
 <pre><code>&lt;meta <span class="property">name</span>=<span class="string">"viewport"</span> content=<span class="string">"width=device-width"</span> /&gt;
 </code></pre><p>把设备1920w下的html样式设置为100px，是为了编写样式的方便，保持了和设计师提供的效果图一样的宽度(关于为什么设置100px，是个人习惯)。因此可以简单地把其他两个宽度的下的html的大小计算出来。</p>
-<h2 id="提示">提示</h2><p>在rem适配中，难免会有小数点出现。不好的是有些android设备会忽略小数位。这种情况在动画时，缺点很明显。解决办法是，适配1280w，盒子的尺寸尽量设置能被3整除的数字。例如：</p>
+<h2 id="提示">提示</h2><p>在rem适配中，难免会有小数点出现。不好的是有些android设备会忽略小数位。这种情况在动画时，现象很明显。解决办法是，适配1280w，盒子的尺寸尽量设置能被3整除的数字。例如：</p>
 <pre><code><span class="class">.album-item</span> <span class="rules">{
     <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">2.91rem</span></span></span>;
 }</span>
-</code></pre><p>如果设置上面了的媒介查询代码，那么div.album-item的宽度在1920w下是291px, 1280w下是194px，同理3840w下是582px。</p>
+</code></pre><p>如果设置上面了的媒介查询代码，那么div.album-item的宽度在1920w下是291px, 1280w下是194px，同理3840w下是582px。<br>当然如果还是不精确，这是我们需要对1280w单独用px做适配，仅此而已。</p>
 <p>参看资料:<br><a href="http://www.w3cplus.com/css3/define-font-size-with-css3-rem" target="_blank" rel="external">http://www.w3cplus.com/css3/define-font-size-with-css3-rem</a><br><a href="http://isux.tencent.com/web-app-rem.html" target="_blank" rel="external">http://isux.tencent.com/web-app-rem.html</a><br><a href="http://www.html-js.com/article/2402" target="_blank" rel="external">http://www.html-js.com/article/2402</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://mackxu.github.io/2015/08/18/rem-simple-use/" data-id="cidhem2hi0005x2twdnipckfk" class="article-share-link">Share</a>
+      <a data-url="http://mackxu.github.io/2015/08/18/rem-simple-use/" data-id="cidjlmxlf0005q0twh8recw1t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/经验/">经验</a></li></ul>
@@ -117,10 +117,19 @@
     
 <nav id="article-nav">
   
+    <a href="/2015/08/19/nano-template/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          templateJS解说
+        
+      </div>
+    </a>
   
-    <a href="/2015/01/13/async-script/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2014/09/04/image-overlay/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">比较JS文件加载：async和DOM Script</div>
+      <div class="article-nav-title">为图片添加半透明遮罩效果</div>
     </a>
   
 </nav>
@@ -138,7 +147,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工作经验/">工作经验</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/经验/">经验</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iqiyi/">iqiyi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工作经验/">工作经验</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/经验/">经验</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -147,7 +156,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/工作经验/" style="font-size: 10px;">工作经验</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/性能优化/" style="font-size: 10px;">性能优化</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/经验/" style="font-size: 10px;">经验</a>
+      <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/iqiyi/" style="font-size: 10px;">iqiyi</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/工作经验/" style="font-size: 10px;">工作经验</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/性能优化/" style="font-size: 10px;">性能优化</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/经验/" style="font-size: 10px;">经验</a>
     </div>
   </div>
 
@@ -156,7 +165,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -168,11 +177,15 @@
       <ul>
         
           <li>
-            <a href="/2015/08/18/rem-simple-use/">rem 在项目中的简单使用</a>
+            <a href="/2015/08/20/async-script/">比较JS文件加载：async和DOM Script</a>
           </li>
         
           <li>
-            <a href="/2015/01/13/async-script/">比较JS文件加载：async和DOM Script</a>
+            <a href="/2015/08/19/nano-template/">templateJS解说</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/18/rem-simple-use/">rem 在项目中的简单使用</a>
           </li>
         
           <li>
@@ -181,10 +194,6 @@
         
           <li>
             <a href="/2014/09/01/sequential-search/">顺序表查找算法及其优化</a>
-          </li>
-        
-          <li>
-            <a href="/2014/08/22/analyticsjs/">google-analytics的使用 解析页面引入代码</a>
           </li>
         
       </ul>

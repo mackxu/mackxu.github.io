@@ -3,33 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>顺序表查找算法及其优化 | mackxu的博客</title>
+  <title>templateJS解说 | mackxu的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="顺序查找算法实现如下:
-var arr = [5, 2, 4, 3, 1]
-    , sequentialSearch = function(arr, val) {
-        var i = 0
-            , len = arr.length;
-        for ( ; i &amp;lt; len; i++) {             // 比较一次">
+  <meta name="description" content="函数内巧用多行注释，实现js模板。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="顺序表查找算法及其优化">
-<meta property="og:url" content="http://mackxu.github.io/2014/09/01/sequential-search/index.html">
+<meta property="og:title" content="templateJS解说">
+<meta property="og:url" content="http://mackxu.github.io/2015/08/19/nano-template/index.html">
 <meta property="og:site_name" content="mackxu的博客">
-<meta property="og:description" content="顺序查找算法实现如下:
-var arr = [5, 2, 4, 3, 1]
-    , sequentialSearch = function(arr, val) {
-        var i = 0
-            , len = arr.length;
-        for ( ; i &amp;lt; len; i++) {             // 比较一次">
-<meta property="og:updated_time" content="2015-08-20T02:31:33.000Z">
+<meta property="og:description" content="函数内巧用多行注释，实现js模板。">
+<meta property="og:updated_time" content="2015-08-27T03:07:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="顺序表查找算法及其优化">
-<meta name="twitter:description" content="顺序查找算法实现如下:
-var arr = [5, 2, 4, 3, 1]
-    , sequentialSearch = function(arr, val) {
-        var i = 0
-            , len = arr.length;
-        for ( ; i &amp;lt; len; i++) {             // 比较一次">
+<meta name="twitter:title" content="templateJS解说">
+<meta name="twitter:description" content="函数内巧用多行注释，实现js模板。">
   
     <link rel="alternative" href="/atom.xml" title="mackxu的博客" type="application/atom+xml">
   
@@ -77,10 +62,10 @@ var arr = [5, 2, 4, 3, 1]
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-sequential-search" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-nano-template" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/09/01/sequential-search/" class="article-date">
-  <time datetime="2014-09-01T09:27:21.000Z" itemprop="datePublished">Sep 1 2014</time>
+    <a href="/2015/08/19/nano-template/" class="article-date">
+  <time datetime="2015-08-19T10:12:36.000Z" itemprop="datePublished">Aug 19 2015</time>
 </a>
     
   </div>
@@ -91,7 +76,7 @@ var arr = [5, 2, 4, 3, 1]
         
   
     <h1 class="article-title" itemprop="name">
-      顺序表查找算法及其优化
+      templateJS解说
     </h1>
   
 
@@ -99,46 +84,57 @@ var arr = [5, 2, 4, 3, 1]
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>顺序查找算法实现如下:</p>
-<pre><code>var arr = [<span class="number">5</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">1</span>]
-    , sequentialSearch = function(arr, val) {
-        var i = <span class="number">0</span>
-            , len = arr.length;
-        <span class="keyword">for</span> ( ; i &lt; len; i++) {             <span class="comment">// 比较一次</span>
-            <span class="keyword">if</span> (arr[i] === val) {           <span class="comment">// 比较二次</span>
-                <span class="keyword">return</span> i;
-            }
-        }
-        <span class="keyword">return</span> i;                           <span class="comment">// 返回len,则说明查找失败</span>
-    }
-</code></pre><p>这里并不是足够完美, 因为每次循环时都需要对i是否越界, 即是否小于len做判断。事实上，还可以有更好的办法，设置一个哨兵, 就可以解决不需要每次让i与len做比较了。</p>
-<h2 id="顺序表查找优化">顺序表查找优化</h2><pre><code><span class="keyword">var</span> arr = [<span class="number">5</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">1</span>]
-    <span class="comment">// 有哨兵的顺序表查找</span>
-    , sequentialSearchOpt = function(arr, <span class="function"><span class="keyword">val</span>) {</span>
-        <span class="keyword">var</span> i = <span class="number">0</span>
-            , arr = arr.slice(<span class="number">0</span>)            <span class="comment">// 保证函数内操作不影响外部的arr数组 </span>
-            , len = arr.length;
-        arr[len] = <span class="function"><span class="keyword">val</span>;</span>                     <span class="comment">// 设置arr[len]为关键字值作为哨兵</span>
-        <span class="comment">// arr.push(val);</span>
-        <span class="keyword">while</span> (arr[i] !== <span class="function"><span class="keyword">val</span>) {</span>            <span class="comment">// 比较一次</span>
-            i++;
-        }
-        <span class="keyword">return</span> i;                           <span class="comment">// 返回len,则说明查找失败</span>
-    }
-</code></pre><p>如果arr[i]中有值等于val则返回i，否则一定会在循环结束处等于val, 此时返回len值。说明数组中没有关键字等于val,查找失败。</p>
-<blockquote>
-<p>在测试过程中, 发现因为由于对象是按地址传递的，在函数中改变数组<code>arr[len] = val</code>会影响到外部的数组，因此需要在函数内clone一份数组出来</p>
-</blockquote>
-<p>这种在查找方向的尽头设置‘哨兵’免去了在查找过程中每一次比较后都要判断查找位置是否越界的小技巧，看似与原先差别不大，但在总数较多时，效率提高很大，是非常好的编程技巧。</p>
-<p><strong>参考：</strong> 大话数据结构 </p>
+        <p>函数内巧用多行注释，实现js模板。<br><a id="more"></a></p>
+<h2 id="注释版templateJS函数说明">注释版templateJS函数说明</h2><ul>
+<li><strong>template(fn, options)</strong><br>返回有数据填充后的模板字符串<br>是template.render(fn, options)快捷方式，具体详情可以查看<em>template.render()</em></li>
+<li><strong>template.compile(fn)</strong><br>返回待填充数据的编译函数。<br>fn: 包含注释文本的函数<br>如果结构多次被使用，可以用变量保存此编译函数，再次使用。 </li>
+<li><strong>template.render(fn, options)</strong><br>返回有数据填充后的模板字符串<br>options: 填充数据对象<br>fn: 包含注释文本的函数</li>
+<li><strong>template._getTmpl(fn)</strong><br>解析函数内注释文本返回模板字符串<br>fn: 包含注释文本的函数</li>
+</ul>
+<h2 id="使用实例">使用实例</h2><h3 id="注释函数">注释函数</h3><pre><code><span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+    <span class="comment">/*!
+        ...
+        &lt;div class="album-desc"&gt;&lt;% desc %&gt;&lt;/div&gt;
+    */</span>
+    <span class="keyword">return</span> <span class="literal">false</span>;
+}
+</code></pre><p>把添加注释的函数传递给template._getTmpl()，可以获得注释文本内容<code>fn.toString()</code>，等待下一步的模板解析。<br><strong>注意:</strong><br>a. 注释文本的开头需要添加感叹号！<br>b.注释后面需要添加return false;语句，否则将解析不到注释文本。</p>
+<h3 id="template-compile()">template.compile()</h3><pre><code>function albumItemCompile () {
+    <span class="keyword">return</span> <span class="keyword">template</span>.compile(function() {/*!
+        &lt;li class=<span class="string">"album-item"</span>&gt;
+            &lt;<span class="keyword">div</span> class=<span class="string">"ellipsis album-item-title"</span>&gt;&lt;% name %&gt;&lt;/<span class="keyword">div</span>&gt;
+            &lt;<span class="keyword">div</span> class=<span class="string">"album-top"</span>&gt;
+                &lt;<span class="keyword">div</span> class=<span class="string">"album-cover"</span>&gt;
+                    &lt;img src=<span class="string">"&lt;% defCover %&gt;"</span> alt=<span class="string">""</span>&gt;
+                    &lt;i class=<span class="string">"album-img"</span>&gt;&lt;/i&gt;
+                &lt;/<span class="keyword">div</span>&gt;
+            &lt;/<span class="keyword">div</span>&gt;
+            &lt;<span class="keyword">div</span> class=<span class="string">"album-bottom"</span>&gt;
+                &lt;<span class="keyword">div</span> class=<span class="string">"album-cover mask mask-cover"</span>&gt;
+                    &lt;img src=<span class="string">"&lt;% defCover %&gt;"</span> alt=<span class="string">""</span>&gt;
+                &lt;/<span class="keyword">div</span>&gt;
+            &lt;/<span class="keyword">div</span>&gt;
+        &lt;/li&gt;
+    */
+    <span class="keyword">return</span> <span class="literal">false</span>;
+    });
+}
+</code></pre><p>对注释文本解析，返回能填充数据的编译函数。<br>可保存此函数，这样多次使用而只解析一次。常见的有列表项模板的编译函数。</p>
+<h3 id="template-render()">template.render()</h3><pre><code><span class="keyword">var</span> d = <span class="keyword">template</span>.render(function() {/*!
+    &lt;<span class="keyword">div</span> class=<span class="string">"album-data"</span>&gt;&lt;% data %&gt;&lt;/<span class="keyword">div</span>&gt;
+*/
+    <span class="keyword">return</span> <span class="literal">false</span>;
+}, { data: data });
+$('body').innerHtml = d;
+</code></pre><p>返回填充了数据的html字符串。此函数可以用template(fn, data)代替。<br>参考链接：<br><a href="http://krasimirtsonev.com/blog/article/Javascript-template-engine-in-just-20-line" target="_blank" rel="external">JavaScript template engine in just 20 lines</a><br><a href="http://www.ghugo.com/function-multiline-text-in-comments/" target="_blank" rel="external">函数内巧用注释实现多行文本拼接</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://mackxu.github.io/2014/09/01/sequential-search/" data-id="cidjlmxl50000q0twnba4av7o" class="article-share-link">Share</a>
+      <a data-url="http://mackxu.github.io/2015/08/19/nano-template/" data-id="cidjlmxll000aq0twhyxcbzj4" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/优化/">优化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iqiyi/">iqiyi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
 
     </footer>
   </div>
@@ -146,19 +142,19 @@ var arr = [5, 2, 4, 3, 1]
     
 <nav id="article-nav">
   
-    <a href="/2014/09/04/image-overlay/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/08/20/async-script/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          为图片添加半透明遮罩效果
+          比较JS文件加载：async和DOM Script
         
       </div>
     </a>
   
   
-    <a href="/2014/08/22/analyticsjs/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/08/18/rem-simple-use/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">google-analytics的使用 解析页面引入代码</div>
+      <div class="article-nav-title">rem 在项目中的简单使用</div>
     </a>
   
 </nav>

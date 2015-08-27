@@ -85,30 +85,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>平时为图片添加半透明遮罩效果，我的做法如下：<br>利用标签i实现背景半透明遮罩。当鼠标hover时, 提高i的背景色透明度值<code>background-color: rgba(0, 0, 0, .6)</code></p>
-<pre><code><span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"opacity-black-position"</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"images/4601.jpg"</span> <span class="attribute">alt</span>=<span class="value">""</span>&gt;</span><span class="tag">&lt;<span class="title">i</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-</code></pre><p>为html结构添加如下css样式：</p>
-<pre><code><span class="comment">/* 利用标签i实现背景半透明遮罩, 兼容性不好 */</span>
-<span class="class">.opacity-black-position</span> <span class="rules">{ <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">460px</span></span></span>; <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">460px</span></span></span>; <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>; }</span>
-<span class="class">.opacity-black-position</span> <span class="tag">i</span> <span class="rules">{ 
-    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>; <span class="rule"><span class="attribute">top</span>:<span class="value"> <span class="number">0</span></span></span>; <span class="rule"><span class="attribute">right</span>:<span class="value"> <span class="number">0</span></span></span>; <span class="rule"><span class="attribute">bottom</span>:<span class="value"> <span class="number">0</span></span></span>; <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">0</span></span></span>; 
-    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="function">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span></span>; 
-    <span class="rule"><span class="attribute">transition</span>:<span class="value"> background-color .<span class="number">5s</span></span></span>;  
-}</span>
-<span class="class">.opacity-black-position</span> <span class="rule"><span class="attribute">a</span>:<span class="value">hover i { background-color: <span class="function">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, .<span class="number">6</span>)</span></span>; }
-</code></pre><h2 id="利用opacity简单实现">利用opacity简单实现</h2><p>昨天看到京东商品图片上的半透明黑色遮罩，是这样实现的。当hover时设置a的透明度为0.4</p>
-<pre><code>&lt;<span class="tag">p</span> class=<span class="string">"opacity-black"</span>&gt;&lt;<span class="tag">a</span> href=<span class="string">"#"</span>&gt;&lt;<span class="tag">img</span> src=<span class="string">"images/4601.jpg"</span> alt=<span class="string">""</span>&gt;&lt;/a&gt;&lt;/p&gt;
-</code></pre><p>为html结构添加如下css样式:</p>
-<pre><code><span class="class">.opacity-black</span> <span class="rules">{ <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">460px</span></span></span>; <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">460px</span></span></span>; <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#000</span></span></span>; }</span>
-<span class="class">.opacity-black</span> <span class="tag">a</span> <span class="rules">{ <span class="rule"><span class="attribute">transition</span>:<span class="value"> opacity .<span class="number">5s</span></span></span>; <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">1</span></span></span>; }</span>
-<span class="class">.opacity-black</span> <span class="rule"><span class="attribute">a</span>:<span class="value">hover { opacity: <span class="number">0.4</span></span></span>; }
-</code></pre><p>通过降低自身a及子标签img的透明度来显示父辈容器的背景色, 达到的效果和上面是一样一样的。</p>
+        <p>平时为图片添加半透明遮罩效果，我的做法如下：<br>利用标签i实现背景半透明遮罩。当鼠标hover时, 提高i的背景色透明度值<code>background-color: rgba(0, 0, 0, .6)</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"opacity-black-position"</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"images/4601.jpg"</span> <span class="attribute">alt</span>=<span class="value">""</span>&gt;</span><span class="tag">&lt;<span class="title">i</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>为html结构添加如下css样式：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 利用标签i实现背景半透明遮罩, 兼容性不好 */</span></span><br><span class="line"><span class="class">.opacity-black-position</span> <span class="rules">&#123; <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">460px</span></span></span>; <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">460px</span></span></span>; <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>; &#125;</span></span><br><span class="line"><span class="class">.opacity-black-position</span> <span class="tag">i</span> <span class="rules">&#123; </span><br><span class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>; <span class="rule"><span class="attribute">top</span>:<span class="value"> <span class="number">0</span></span></span>; <span class="rule"><span class="attribute">right</span>:<span class="value"> <span class="number">0</span></span></span>; <span class="rule"><span class="attribute">bottom</span>:<span class="value"> <span class="number">0</span></span></span>; <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">0</span></span></span>; </span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="function">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span></span>; </span><br><span class="line">    <span class="rule"><span class="attribute">transition</span>:<span class="value"> background-color .<span class="number">5s</span></span></span>;  </span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.opacity-black-position</span> <span class="rule"><span class="attribute">a</span>:<span class="value">hover i &#123; background-color: <span class="function">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, .<span class="number">6</span>)</span></span>; &#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="利用opacity简单实现">利用opacity简单实现</h2><p>昨天看到京东商品图片上的半透明黑色遮罩，是这样实现的。 </p>
+<p>当hover时设置图片父容器a的半透明度0.4<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"opacity-black"</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"images/4601.jpg"</span> <span class="attribute">alt</span>=<span class="value">""</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>为html结构添加如下css样式:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.opacity-black</span> <span class="rules">&#123; <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">460px</span></span></span>; <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">460px</span></span></span>; <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#000</span></span></span>; &#125;</span></span><br><span class="line"><span class="class">.opacity-black</span> <span class="tag">a</span> <span class="rules">&#123; <span class="rule"><span class="attribute">transition</span>:<span class="value"> opacity .<span class="number">5s</span></span></span>; <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">1</span></span></span>; &#125;</span></span><br><span class="line"><span class="class">.opacity-black</span> <span class="rule"><span class="attribute">a</span>:<span class="value">hover &#123; opacity: <span class="number">0.4</span></span></span>; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过降低自身及子标签img的透明度来显示父辈容器的背景色, 达到的效果和上面是一样一样的。</p>
 <p><strong>狠狠滴点这里(演示):</strong> <a href="http://codepen.io/mackxu/pen/mJtvh" target="_blank" rel="external">http://codepen.io/mackxu/pen/mJtvh</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://mackxu.github.io/2014/09/04/image-overlay/" data-id="cidhem2hl0006x2tw1d1ykwbz" class="article-share-link">Share</a>
+      <a data-url="http://mackxu.github.io/2014/09/04/image-overlay/" data-id="cidjlmxln000fq0twrcx9vybo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工作经验/">工作经验</a></li></ul>
@@ -178,7 +166,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://mackxu.github.io/2014/09/01/sequential-search/" data-id="cidhem2h40000x2twnpeke97x" class="article-share-link">Share</a>
+      <a data-url="http://mackxu.github.io/2014/09/01/sequential-search/" data-id="cidjlmxl50000q0twnba4av7o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/优化/">优化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
@@ -201,7 +189,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工作经验/">工作经验</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/经验/">经验</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iqiyi/">iqiyi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工作经验/">工作经验</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/经验/">经验</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -210,7 +198,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/工作经验/" style="font-size: 10px;">工作经验</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/性能优化/" style="font-size: 10px;">性能优化</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/经验/" style="font-size: 10px;">经验</a>
+      <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/iqiyi/" style="font-size: 10px;">iqiyi</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/工作经验/" style="font-size: 10px;">工作经验</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/性能优化/" style="font-size: 10px;">性能优化</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/经验/" style="font-size: 10px;">经验</a>
     </div>
   </div>
 
@@ -219,7 +207,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -231,11 +219,15 @@
       <ul>
         
           <li>
-            <a href="/2015/08/18/rem-simple-use/">rem 在项目中的简单使用</a>
+            <a href="/2015/08/20/async-script/">比较JS文件加载：async和DOM Script</a>
           </li>
         
           <li>
-            <a href="/2015/01/13/async-script/">比较JS文件加载：async和DOM Script</a>
+            <a href="/2015/08/19/nano-template/">templateJS解说</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/18/rem-simple-use/">rem 在项目中的简单使用</a>
           </li>
         
           <li>
@@ -244,10 +236,6 @@
         
           <li>
             <a href="/2014/09/01/sequential-search/">顺序表查找算法及其优化</a>
-          </li>
-        
-          <li>
-            <a href="/2014/08/22/analyticsjs/">google-analytics的使用 解析页面引入代码</a>
           </li>
         
       </ul>
