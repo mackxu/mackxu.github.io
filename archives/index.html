@@ -63,6 +63,90 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-transition-display" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/17/transition-display/" class="article-date">
+  <time datetime="2016-01-17T02:56:51.000Z" itemprop="datePublished">Jan 17 2016</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/17/transition-display/">当transition遇到display</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>实现淡入淡出时，可以使用jQuery的fadeIn()/fadeOut()。使用css3的transition(过渡)也能实现。<br>现在我们借助transition模仿jQuery实现盒子的淡入淡出:<br>通过button的click事件，给div#box添加或删除<code>classname</code>实现效果<br>HTML结构:</p>
+<pre><code>&lt;button&gt;动画按钮&lt;/button&gt;
+&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"box"</span> <span class="property">id</span>=<span class="string">"box"</span>&gt;&lt;/<span class="keyword">div</span>&gt;
+</code></pre><h2 id="过渡改变opacity属性值">过渡改变opacity属性值</h2><p>css代码：</p>
+<pre><code><span class="class">.box</span> <span class="rules">{
+    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> goldenrod</span></span>;
+    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">300px</span></span></span>; <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">200px</span></span></span>;
+    <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">100px</span> auto</span></span>;
+    <span class="rule"><span class="attribute">transition</span>:<span class="value"> all <span class="number">1s</span> linear</span></span>;
+}</span>
+<span class="class">.hide</span> <span class="rules">{ 
+    <span class="comment">/* display: none; */</span>
+    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">0</span> 
+}</span></span></span>
+</code></pre><p>JS代码:</p>
+<pre><code>var <span class="variable">$box</span> = $(<span class="string">'#box'</span>);
+$(<span class="string">'button'</span>).on(<span class="string">'click'</span>, <span class="keyword">function</span>() {
+    if(<span class="variable">$box</span>.hasClass(<span class="string">'hide'</span>)) {
+        <span class="variable">$box</span>.removeClass(<span class="string">'hide'</span>);
+    }else {
+        <span class="variable">$box</span>.addClass(<span class="string">'hide'</span>);
+    }
+});
+</code></pre><p>在点击按钮后可以看到淡入淡出效果，但是在css代码中解除对display属性注释后，在刷新页面，淡出淡入效果没有了。究其原因在于transition不支持display的none值与其它值之间的过渡，进而影响到盒子对opacity的过渡效果。<br>我们可以按照下面的步骤，实现效果：   </p>
+<ul>
+<li>当盒子可见时，先实现opacity动画，动画结束后添加<code>display: none</code></li>
+<li>当盒子不可见时，首先使其可见<code>display: block</code>，然后执行opacity动画。</li>
+</ul>
+<h2 id="解决办法">解决办法</h2><p>把<code>opacity: 0</code>从.hide抽离。<br>css代码:  </p>
+<pre><code><span class="class">.hide</span> <span class="rules">{ <span class="rule"><span class="attribute">display</span>:<span class="value"> none</span></span>; }</span>
+<span class="class">.opacity0</span> <span class="rules">{ <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">0</span></span></span>; }</span>
+</code></pre><p>JS代码如下：</p>
+<pre><code>var <span class="variable">$box</span> = $(<span class="string">'#box'</span>);
+$(<span class="string">'button'</span>).on(<span class="string">'click'</span>, <span class="keyword">function</span>() {
+    if(<span class="variable">$box</span>.hasClass(<span class="string">'hide'</span>)) {
+        <span class="variable">$box</span>.removeClass(<span class="string">'hide'</span>);
+        requestAnimationFrame(function() {          // 合适时机执行淡入动画
+            <span class="variable">$box</span>.removeClass(<span class="string">'opacity0'</span>);
+        });
+    }else {
+        <span class="variable">$box</span>.addClass(<span class="string">'opacity0'</span>);
+        <span class="variable">$box</span>.one(<span class="string">'transitionEnd, webkitTransitionEnd'</span>, function() {
+            <span class="variable">$box</span>.addClass(<span class="string">'hide'</span>);                 // 动画结束后, 隐藏盒子
+        });
+    }
+});
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://mackxu.github.io/2016/01/17/transition-display/" data-id="ciji1kywm000860zqm9m5zk2a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/transition/">transition</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-async-script" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/08/20/async-script/" class="article-date">
@@ -94,7 +178,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://mackxu.github.io/2015/08/20/async-script/" data-id="cidjlmxlr000jq0twi37tw6ke" class="article-share-link">Share</a>
+      <a data-url="http://mackxu.github.io/2015/08/20/async-script/" data-id="ciji1kyx2000s60zqcuvtsmgs" class="article-share-link">Share</a>
       
       
     </footer>
@@ -135,7 +219,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://mackxu.github.io/2015/08/19/nano-template/" data-id="cidjlmxll000aq0twhyxcbzj4" class="article-share-link">Share</a>
+      <a data-url="http://mackxu.github.io/2015/08/19/nano-template/" data-id="ciji1kywv000j60zq5j4h70lb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iqiyi/">iqiyi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -178,7 +262,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://mackxu.github.io/2015/08/18/rem-simple-use/" data-id="cidjlmxlf0005q0twh8recw1t" class="article-share-link">Share</a>
+      <a data-url="http://mackxu.github.io/2015/08/18/rem-simple-use/" data-id="ciji1kyws000e60zqvgbnyvhz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/经验/">经验</a></li></ul>
@@ -223,7 +307,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://mackxu.github.io/2014/09/04/image-overlay/" data-id="cidjlmxln000fq0twrcx9vybo" class="article-share-link">Share</a>
+      <a data-url="http://mackxu.github.io/2014/09/04/image-overlay/" data-id="ciji1kywz000o60zqbid5r4d0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工作经验/">工作经验</a></li></ul>
@@ -293,7 +377,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://mackxu.github.io/2014/09/01/sequential-search/" data-id="cidjlmxl50000q0twnba4av7o" class="article-share-link">Share</a>
+      <a data-url="http://mackxu.github.io/2014/09/01/sequential-search/" data-id="ciji1kywp000960zqfczmc80e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/优化/">优化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
@@ -352,7 +436,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://mackxu.github.io/2014/08/22/analyticsjs/" data-id="cidtmf00v0000ectwa55nn3g4" class="article-share-link">Share</a>
+      <a data-url="http://mackxu.github.io/2014/08/22/analyticsjs/" data-id="ciji1kyvu000060zq99io1qpv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
@@ -395,7 +479,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://mackxu.github.io/2014/07/21/array-unique/" data-id="cidjlmxlv000kq0twbbcxqpdb" class="article-share-link">Share</a>
+      <a data-url="http://mackxu.github.io/2014/07/21/array-unique/" data-id="ciji1kyx7000t60zqua0lc33i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/性能优化/">性能优化</a></li></ul>
@@ -418,7 +502,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iqiyi/">iqiyi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工作经验/">工作经验</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/经验/">经验</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iqiyi/">iqiyi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/transition/">transition</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工作经验/">工作经验</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/经验/">经验</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -427,7 +511,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/iqiyi/" style="font-size: 10px;">iqiyi</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/工作经验/" style="font-size: 10px;">工作经验</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/性能优化/" style="font-size: 10px;">性能优化</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/经验/" style="font-size: 10px;">经验</a>
+      <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/iqiyi/" style="font-size: 10px;">iqiyi</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/transition/" style="font-size: 10px;">transition</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/工作经验/" style="font-size: 10px;">工作经验</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/性能优化/" style="font-size: 10px;">性能优化</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/经验/" style="font-size: 10px;">经验</a>
     </div>
   </div>
 
@@ -436,7 +520,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -446,6 +530,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/01/17/transition-display/">当transition遇到display</a>
+          </li>
         
           <li>
             <a href="/2015/08/20/async-script/">比较JS文件加载：async和DOM Script</a>
@@ -463,10 +551,6 @@
             <a href="/2014/09/04/image-overlay/">为图片添加半透明遮罩效果</a>
           </li>
         
-          <li>
-            <a href="/2014/09/01/sequential-search/">顺序表查找算法及其优化</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -479,7 +563,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 John Doe<br>
+      &copy; 2016 John Doe<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

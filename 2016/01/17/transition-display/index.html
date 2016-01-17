@@ -3,17 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: 经验 | mackxu的博客</title>
+  <title>当transition遇到display | mackxu的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="mackxu的博客">
-<meta property="og:url" content="http://mackxu.github.io/tags/经验/index.html">
+  <meta name="description" content="实现淡入淡出时，可以使用jQuery的fadeIn()/fadeOut()。使用css3的transition(过渡)也能实现。现在我们借助transition模仿jQuery实现盒子的淡入淡出:通过button的click事件，给div#box添加或删除classname实现效果HTML结构:
+&amp;lt;button&amp;gt;动画按钮&amp;lt;/button&amp;gt;
+&amp;lt;div class=&quot;bo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="当transition遇到display">
+<meta property="og:url" content="http://mackxu.github.io/2016/01/17/transition-display/index.html">
 <meta property="og:site_name" content="mackxu的博客">
-<meta property="og:description">
+<meta property="og:description" content="实现淡入淡出时，可以使用jQuery的fadeIn()/fadeOut()。使用css3的transition(过渡)也能实现。现在我们借助transition模仿jQuery实现盒子的淡入淡出:通过button的click事件，给div#box添加或删除classname实现效果HTML结构:
+&amp;lt;button&amp;gt;动画按钮&amp;lt;/button&amp;gt;
+&amp;lt;div class=&quot;bo">
+<meta property="og:updated_time" content="2016-01-17T04:28:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mackxu的博客">
-<meta name="twitter:description">
+<meta name="twitter:title" content="当transition遇到display">
+<meta name="twitter:description" content="实现淡入淡出时，可以使用jQuery的fadeIn()/fadeOut()。使用css3的transition(过渡)也能实现。现在我们借助transition模仿jQuery实现盒子的淡入淡出:通过button的click事件，给div#box添加或删除classname实现效果HTML结构:
+&amp;lt;button&amp;gt;动画按钮&amp;lt;/button&amp;gt;
+&amp;lt;div class=&quot;bo">
   
     <link rel="alternative" href="/atom.xml" title="mackxu的博客" type="application/atom+xml">
   
@@ -61,12 +68,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-rem-simple-use" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-transition-display" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/08/18/rem-simple-use/" class="article-date">
-  <time datetime="2015-08-18T13:24:59.000Z" itemprop="datePublished">Aug 18 2015</time>
+    <a href="/2016/01/17/transition-display/" class="article-date">
+  <time datetime="2016-01-17T02:56:51.000Z" itemprop="datePublished">Jan 17 2016</time>
 </a>
     
   </div>
@@ -76,8 +81,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/18/rem-simple-use/">rem 在项目中的简单使用</a>
+    <h1 class="article-title" itemprop="name">
+      当transition遇到display
     </h1>
   
 
@@ -85,28 +90,78 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在项目中重度使用rem<br>
-        
-          <p class="article-more-link">
-            <a href="/2015/08/18/rem-simple-use/#more">Read More</a>
-          </p>
-        
+        <p>实现淡入淡出时，可以使用jQuery的fadeIn()/fadeOut()。使用css3的transition(过渡)也能实现。<br>现在我们借助transition模仿jQuery实现盒子的淡入淡出:<br>通过button的click事件，给div#box添加或删除<code>classname</code>实现效果<br>HTML结构:</p>
+<pre><code>&lt;button&gt;动画按钮&lt;/button&gt;
+&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"box"</span> <span class="property">id</span>=<span class="string">"box"</span>&gt;&lt;/<span class="keyword">div</span>&gt;
+</code></pre><h2 id="过渡改变opacity属性值">过渡改变opacity属性值</h2><p>css代码：</p>
+<pre><code><span class="class">.box</span> <span class="rules">{
+    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> goldenrod</span></span>;
+    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">300px</span></span></span>; <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">200px</span></span></span>;
+    <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">100px</span> auto</span></span>;
+    <span class="rule"><span class="attribute">transition</span>:<span class="value"> all <span class="number">1s</span> linear</span></span>;
+}</span>
+<span class="class">.hide</span> <span class="rules">{ 
+    <span class="comment">/* display: none; */</span>
+    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">0</span> 
+}</span></span></span>
+</code></pre><p>JS代码:</p>
+<pre><code>var <span class="variable">$box</span> = $(<span class="string">'#box'</span>);
+$(<span class="string">'button'</span>).on(<span class="string">'click'</span>, <span class="keyword">function</span>() {
+    if(<span class="variable">$box</span>.hasClass(<span class="string">'hide'</span>)) {
+        <span class="variable">$box</span>.removeClass(<span class="string">'hide'</span>);
+    }else {
+        <span class="variable">$box</span>.addClass(<span class="string">'hide'</span>);
+    }
+});
+</code></pre><p>在点击按钮后可以看到淡入淡出效果，但是在css代码中解除对display属性注释后，在刷新页面，淡出淡入效果没有了。究其原因在于transition不支持display的none值与其它值之间的过渡，进而影响到盒子对opacity的过渡效果。<br>我们可以按照下面的步骤，实现效果：   </p>
+<ul>
+<li>当盒子可见时，先实现opacity动画，动画结束后添加<code>display: none</code></li>
+<li>当盒子不可见时，首先使其可见<code>display: block</code>，然后执行opacity动画。</li>
+</ul>
+<h2 id="解决办法">解决办法</h2><p>把<code>opacity: 0</code>从.hide抽离。<br>css代码:  </p>
+<pre><code><span class="class">.hide</span> <span class="rules">{ <span class="rule"><span class="attribute">display</span>:<span class="value"> none</span></span>; }</span>
+<span class="class">.opacity0</span> <span class="rules">{ <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">0</span></span></span>; }</span>
+</code></pre><p>JS代码如下：</p>
+<pre><code>var <span class="variable">$box</span> = $(<span class="string">'#box'</span>);
+$(<span class="string">'button'</span>).on(<span class="string">'click'</span>, <span class="keyword">function</span>() {
+    if(<span class="variable">$box</span>.hasClass(<span class="string">'hide'</span>)) {
+        <span class="variable">$box</span>.removeClass(<span class="string">'hide'</span>);
+        requestAnimationFrame(function() {          // 合适时机执行淡入动画
+            <span class="variable">$box</span>.removeClass(<span class="string">'opacity0'</span>);
+        });
+    }else {
+        <span class="variable">$box</span>.addClass(<span class="string">'opacity0'</span>);
+        <span class="variable">$box</span>.one(<span class="string">'transitionEnd, webkitTransitionEnd'</span>, function() {
+            <span class="variable">$box</span>.addClass(<span class="string">'hide'</span>);                 // 动画结束后, 隐藏盒子
+        });
+    }
+});
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://mackxu.github.io/2015/08/18/rem-simple-use/" data-id="ciji1kyws000e60zqvgbnyvhz" class="article-share-link">Share</a>
+      <a data-url="http://mackxu.github.io/2016/01/17/transition-display/" data-id="ciji1kywm000860zqm9m5zk2a" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/经验/">经验</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS3/">CSS3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/transition/">transition</a></li></ul>
 
     </footer>
   </div>
   
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/08/20/async-script/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">比较JS文件加载：async和DOM Script</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-
-  
-  
 </section>
         
           <aside id="sidebar">
