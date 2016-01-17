@@ -4,7 +4,7 @@
   <subtitle><![CDATA[学而时习之不亦说乎]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://mackxu.github.io/"/>
-  <updated>2016-01-17T04:28:11.000Z</updated>
+  <updated>2016-01-17T04:35:15.000Z</updated>
   <id>http://mackxu.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://mackxu.github.io/2016/01/17/transition-display/"/>
     <id>http://mackxu.github.io/2016/01/17/transition-display/</id>
     <published>2016-01-17T02:56:51.000Z</published>
-    <updated>2016-01-17T04:28:11.000Z</updated>
+    <updated>2016-01-17T04:35:15.000Z</updated>
     <content type="html"><![CDATA[<p>实现淡入淡出时，可以使用jQuery的fadeIn()/fadeOut()。使用css3的transition(过渡)也能实现。<br>现在我们借助transition模仿jQuery实现盒子的淡入淡出:<br>通过button的click事件，给div#box添加或删除<code>classname</code>实现效果<br>HTML结构:</p>
 <pre><code>&lt;button&gt;动画按钮&lt;/button&gt;
 &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"box"</span> <span class="property">id</span>=<span class="string">"box"</span>&gt;&lt;/<span class="keyword">div</span>&gt;
@@ -66,7 +66,8 @@ $(<span class="string">'button'</span>).on(<span class="string">'click'</span>, 
         });
     }
 });
-</code></pre>]]></content>
+</code></pre><p>参考:<br><a href="http://ued.ctrip.com/blog/when-on-transition-display.html" target="_blank" rel="external">http://ued.ctrip.com/blog/when-on-transition-display.html</a><br><a href="http://www.impressivewebs.com/animate-display-block-none/" target="_blank" rel="external">http://www.impressivewebs.com/animate-display-block-none/</a><br><a href="http://oli.jp/2010/css-animatable-properties/" target="_blank" rel="external">http://oli.jp/2010/css-animatable-properties/</a></p>
+]]></content>
     <summary type="html">
     <![CDATA[<p>实现淡入淡出时，可以使用jQuery的fadeIn()/fadeOut()。使用css3的transition(过渡)也能实现。<br>现在我们借助transition模仿jQuery实现盒子的淡入淡出:<br>通过button的click事件，给div#box添加或删除<]]>
     </summary>
