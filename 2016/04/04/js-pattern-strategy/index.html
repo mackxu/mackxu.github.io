@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: iqiyi | mackxu的博客</title>
+  <title>JS设计模式之策略模式 | mackxu的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="mackxu的博客">
-<meta property="og:url" content="http://mackxu.github.io/tags/iqiyi/index.html">
+  <meta name="description" content="策略模式定义：定义一系列的算法，把他们一个个封装起来，并且使它们可以相互交换">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS设计模式之策略模式">
+<meta property="og:url" content="http://mackxu.github.io/2016/04/04/js-pattern-strategy/index.html">
 <meta property="og:site_name" content="mackxu的博客">
-<meta property="og:description">
+<meta property="og:description" content="策略模式定义：定义一系列的算法，把他们一个个封装起来，并且使它们可以相互交换">
+<meta property="og:updated_time" content="2016-04-04T03:30:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mackxu的博客">
-<meta name="twitter:description">
+<meta name="twitter:title" content="JS设计模式之策略模式">
+<meta name="twitter:description" content="策略模式定义：定义一系列的算法，把他们一个个封装起来，并且使它们可以相互交换">
   
     <link rel="alternative" href="/atom.xml" title="mackxu的博客" type="application/atom+xml">
   
@@ -61,12 +62,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-nano-template" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-js-pattern-strategy" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/08/19/nano-template/" class="article-date">
-  <time datetime="2015-08-19T10:12:36.000Z" itemprop="datePublished">Aug 19 2015</time>
+    <a href="/2016/04/04/js-pattern-strategy/" class="article-date">
+  <time datetime="2016-04-04T00:20:38.000Z" itemprop="datePublished">Apr 4 2016</time>
 </a>
     
   </div>
@@ -76,8 +75,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/19/nano-template/">templateJS解说</a>
+    <h1 class="article-title" itemprop="name">
+      JS设计模式之策略模式
     </h1>
   
 
@@ -85,28 +84,77 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>函数内巧用多行注释，实现js模板。<br>
-        
-          <p class="article-more-link">
-            <a href="/2015/08/19/nano-template/#more">Read More</a>
-          </p>
-        
+        <p>策略模式定义：定义一系列的算法，把他们一个个封装起来，并且使它们可以相互交换<br><a id="more"></a></p>
+<h2 id="案例">案例</h2><p>公司要根据员工的工资基数和年底的绩效情况发放年终奖。例如，绩效为S的人年终奖有4倍工资，绩效为A的人年终奖有3倍工资，绩效为B的人年终奖有2倍工资。</p>
+<h2 id="最初的代码实现">最初的代码实现</h2><pre><code><span class="keyword">var</span> calculateBonus = <span class="function"><span class="keyword">function</span><span class="params">(performanceLevel, salary)</span> </span>{
+    <span class="keyword">if</span>(performanceLevel === <span class="string">'S'</span>) {
+        <span class="keyword">return</span> salary * <span class="number">4</span>;
+    }
+
+    <span class="keyword">if</span>(performanceLevel === <span class="string">'A'</span>) {
+        <span class="keyword">return</span> salary * <span class="number">3</span>;
+    }
+
+    <span class="keyword">if</span>(performanceLevel === <span class="string">'B'</span>) {
+        <span class="keyword">return</span> salary * <span class="number">2</span>;
+    }
+};
+
+<span class="keyword">var</span> s = calculateBonus(<span class="string">'S'</span>, <span class="number">40000</span>);             <span class="comment">// 160000</span>
+<span class="keyword">var</span> b = calculateBonus(<span class="string">'B'</span>, <span class="number">10000</span>);             <span class="comment">// 20000</span>
+</code></pre><h2 id="使用策略模式重构代码">使用策略模式重构代码</h2><pre><code><span class="keyword">var</span> strategies = {
+    S: <span class="function"><span class="keyword">function</span><span class="params">(salary)</span> </span>{
+        <span class="keyword">return</span> salary * <span class="number">4</span>;
+    },
+    A: <span class="function"><span class="keyword">function</span><span class="params">(salary)</span> </span>{
+        <span class="keyword">return</span> salary * <span class="number">3</span>;
+    },
+    B: <span class="function"><span class="keyword">function</span><span class="params">(salary)</span> </span>{
+        <span class="keyword">return</span> salary * <span class="number">2</span>;
+    },
+};
+
+<span class="keyword">var</span> calculateBonus = <span class="function"><span class="keyword">function</span><span class="params">(level, salary)</span> </span>{
+    <span class="keyword">return</span> strategies[level].call(<span class="keyword">this</span>, salary);
+};
+
+<span class="keyword">var</span> sss = calculateBonus(<span class="string">'S'</span>, <span class="number">2000</span>);                <span class="comment">// 8000</span>
+<span class="keyword">var</span> bbb = calculateBonus(<span class="string">'B'</span>, <span class="number">500</span>);                 <span class="comment">// 1000</span>
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://mackxu.github.io/2015/08/19/nano-template/" data-id="cimlhic5n000ifyzqzafwin6c" class="article-share-link">Share</a>
+      <a data-url="http://mackxu.github.io/2016/04/04/js-pattern-strategy/" data-id="cimlhic5t000nfyzq4x65ualh" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iqiyi/">iqiyi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pattern/">pattern</a></li></ul>
 
     </footer>
   </div>
   
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/04/js-pattern-strategy2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JS设计模式之策略模式(二)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/01/17/transition-display/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">当transition遇到display</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-
-  
-  
 </section>
         
           <aside id="sidebar">

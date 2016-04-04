@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: 工作经验 | mackxu的博客</title>
+  <title>Tag: pattern | mackxu的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="mackxu的博客">
-<meta property="og:url" content="http://mackxu.github.io/tags/工作经验/index.html">
+<meta property="og:url" content="http://mackxu.github.io/tags/pattern/index.html">
 <meta property="og:site_name" content="mackxu的博客">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -63,10 +63,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-image-overlay" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-js-pattern-strategy2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/09/04/image-overlay/" class="article-date">
-  <time datetime="2014-09-03T23:22:25.000Z" itemprop="datePublished">Sep 4 2014</time>
+    <a href="/2016/04/04/js-pattern-strategy2/" class="article-date">
+  <time datetime="2016-04-04T03:49:58.000Z" itemprop="datePublished">Apr 4 2016</time>
 </a>
     
   </div>
@@ -77,7 +77,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/04/image-overlay/">为图片添加半透明遮罩效果</a>
+      <a class="article-title" href="/2016/04/04/js-pattern-strategy2/">JS设计模式之策略模式(二)</a>
     </h1>
   
 
@@ -85,21 +85,62 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>平时为图片添加半透明遮罩效果，我的做法如下：<br>利用标签i实现背景半透明遮罩。当鼠标hover时, 提高i的背景色透明度值<code>background-color: rgba(0, 0, 0, .6)</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"opacity-black-position"</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"images/4601.jpg"</span> <span class="attribute">alt</span>=<span class="value">""</span>&gt;</span><span class="tag">&lt;<span class="title">i</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>为html结构添加如下css样式：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 利用标签i实现背景半透明遮罩, 兼容性不好 */</span></span><br><span class="line"><span class="class">.opacity-black-position</span> <span class="rules">&#123; <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">460px</span></span></span>; <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">460px</span></span></span>; <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>; &#125;</span></span><br><span class="line"><span class="class">.opacity-black-position</span> <span class="tag">i</span> <span class="rules">&#123; </span><br><span class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>; <span class="rule"><span class="attribute">top</span>:<span class="value"> <span class="number">0</span></span></span>; <span class="rule"><span class="attribute">right</span>:<span class="value"> <span class="number">0</span></span></span>; <span class="rule"><span class="attribute">bottom</span>:<span class="value"> <span class="number">0</span></span></span>; <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">0</span></span></span>; </span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="function">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span></span>; </span><br><span class="line">    <span class="rule"><span class="attribute">transition</span>:<span class="value"> background-color .<span class="number">5s</span></span></span>;  </span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.opacity-black-position</span> <span class="rule"><span class="attribute">a</span>:<span class="value">hover i &#123; background-color: <span class="function">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, .<span class="number">6</span>)</span></span>; &#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="利用opacity简单实现">利用opacity简单实现</h2><p>昨天看到京东商品图片上的半透明黑色遮罩，是这样实现的。 </p>
-<p>当hover时设置图片父容器a的半透明度0.4<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"opacity-black"</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"images/4601.jpg"</span> <span class="attribute">alt</span>=<span class="value">""</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>为html结构添加如下css样式:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.opacity-black</span> <span class="rules">&#123; <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">460px</span></span></span>; <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">460px</span></span></span>; <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#000</span></span></span>; &#125;</span></span><br><span class="line"><span class="class">.opacity-black</span> <span class="tag">a</span> <span class="rules">&#123; <span class="rule"><span class="attribute">transition</span>:<span class="value"> opacity .<span class="number">5s</span></span></span>; <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">1</span></span></span>; &#125;</span></span><br><span class="line"><span class="class">.opacity-black</span> <span class="rule"><span class="attribute">a</span>:<span class="value">hover &#123; opacity: <span class="number">0.4</span></span></span>; &#125;</span><br></pre></td></tr></table></figure></p>
-<p>通过降低自身及子标签img的透明度来显示父辈容器的背景色, 达到的效果和上面是一样一样的。</p>
-<p><strong>狠狠滴点这里(演示):</strong> <a href="http://codepen.io/mackxu/pen/mJtvh" target="_blank" rel="external">http://codepen.io/mackxu/pen/mJtvh</a></p>
-
+        <p>利用策略模式来校验用户是否输入了合法的数据<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/04/04/js-pattern-strategy2/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://mackxu.github.io/2014/09/04/image-overlay/" data-id="cimlhic5x000rfyzqgofylcjm" class="article-share-link">Share</a>
+      <a data-url="http://mackxu.github.io/2016/04/04/js-pattern-strategy2/" data-id="cimlhivl40011fyzq9izysf3v" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工作经验/">工作经验</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pattern/">pattern</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js-pattern-strategy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/04/js-pattern-strategy/" class="article-date">
+  <time datetime="2016-04-04T00:20:38.000Z" itemprop="datePublished">Apr 4 2016</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/04/js-pattern-strategy/">JS设计模式之策略模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>策略模式定义：定义一系列的算法，把他们一个个封装起来，并且使它们可以相互交换<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/04/04/js-pattern-strategy/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://mackxu.github.io/2016/04/04/js-pattern-strategy/" data-id="cimlhic5t000nfyzq4x65ualh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pattern/">pattern</a></li></ul>
 
     </footer>
   </div>
